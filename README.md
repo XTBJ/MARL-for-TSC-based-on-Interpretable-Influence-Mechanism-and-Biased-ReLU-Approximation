@@ -1,1 +1,3 @@
-# MARL-for-TSC-based-on-Interpretable-Influence-Mechanism-and-Biased-ReLU-Approximation
+# Multi-agent Reinforcement Learning for Traffic Signal Control based on Interpretable Influence Mechanism and Biased ReLU Approximation
+
+## About the Project
