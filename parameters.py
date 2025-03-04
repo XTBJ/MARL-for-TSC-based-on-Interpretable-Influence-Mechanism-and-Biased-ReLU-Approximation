@@ -1,0 +1,43 @@
+'''
+    All the needed hyperparameters for the algorithm implementation.
+'''
+
+# Traffic model settings
+USE_GUI = False
+OUT_CSV_NAME = None
+NUM_SECONDS = 8000
+MAX_DEPART_DELAY = 100000
+TIME_TO_TELEPORT = -1
+YELLOW_TIME = 2
+MIN_GREEN_TIME = 8
+MAX_GREEN_TIME = 50
+DELTA_TIME = 5
+SINGLE_AGENT = False
+
+# MDP settings
+BATCH_SIZE = 32
+EPISODE_LENGTH = 100
+TIME_STEP = 500
+REWARD_DECAY = 0.9
+
+SEED = 0
+MAX_STEPS = int(1e6)
+CAPACITY = 10000
+
+# Algorithm parameters settings
+HIDDEN_SIZE = 32
+ACTOR_LR = 1e-3
+CRITIC_LR = 1e-2
+Q_LR = 1e-2
+GAMMA = 0.9
+LMBDA = 0.95
+POLICY_CLIP = 0.2
+USE_CUDA = False
+REPLACE_TARGET_ITER = 300
+MEMORY_SIZE = 500
+TAU = 0.01
+REPLACE_ITER = 1000
+EPSILON = 0.9
+INTERMEDIATE_NODES = 150
+EPOCHS = 10
+QUARTILE = 5
