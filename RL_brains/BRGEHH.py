@@ -42,7 +42,7 @@ class PolicyNet(nn.Module):
         super(PolicyNet, self).__init__()
         self.BReLU_Layer = BReLU_Net(n_state, 10, 10, n_action, q, mean, var)
 
-    def forward(self, x, update=False):
+    def forward(self, x):
         out, w1, w2, w3 = self.BReLU_Layer(x)
         out = F.softmax(out, dim=1)
         return out, w1, w2, w3
@@ -51,7 +51,7 @@ class BReLU_Critic(nn.Module):
     def __init__(self, n_in, n_hidden, n_out, q, mean=0, var=1):
         super(BReLU_Critic, self).__init__()
         self.BReLU_Layer = BReLU_Net(n_in, 12, 12, n_out, q, mean, var)
-    def forward(self, x, update=False):
+    def forward(self, x):
         out, w1, w2, w3 = self.BReLU_Layer(x)
         return out, w1, w2, w3
 
@@ -109,7 +109,7 @@ class ValueNet(nn.Module):
         self.ehh = EHH_Net(input_size=n_input, hidden_size=self.ehh_hidden, output_size=self.n_agent, intermediate_node=self.intermediate_node, normalization=True, file_path=EHH_adj_file)
         self.ehh.load_state_dict(checkpoint)
         
-    def forward(self, inps, mask, update=False, init_struct_update=False, agents=None, return_q=True, return_all_q=False, regularize=False, return_attend=False):
+    def forward(self, inps, init_struct_update=False, agents=None, return_q=True, return_all_q=False, regularize=False, return_attend=False):
         '''
         Input: 
             inps: batch of obseravtion + action
@@ -219,7 +219,7 @@ class BRGEHHNet(nn.Module):
             if np.random.uniform() < EPSILON:   # optimal action
                 s = state[self.n_agent[i]]
                 s = torch.tensor(s[np.newaxis, :], dtype=torch.float).to(self.device)
-                probs, w1, w2, w3 = self.actors[i](s, update=False)
+                probs, w1, w2, w3 = self.actors[i](s)
                 action_dist = torch.distributions.Categorical(probs)
                 action[self.n_agent[i]] = action_dist.sample().item()
             else:   # random action
@@ -232,7 +232,7 @@ class BRGEHHNet(nn.Module):
             self.actors[i].train()
 
 
-    def learn(self, sample, mask, update=False, init_struct_update=False):
+    def learn(self, sample, init_struct_update=False):
         '''
             Update centralized critic for all agents
         '''
@@ -249,7 +249,7 @@ class BRGEHHNet(nn.Module):
         next_acs = []
         next_log_pis = []
         for pi, ob in zip(self.old_actors, next_obs):
-            probs = pi(ob, update=update)[0]
+            probs = pi(ob)[0]
             curr_next_ac, curr_next_log_pi = categorical_sample(probs, use_cuda=True)
             next_acs.append(curr_next_ac)
             next_log_pis.append(curr_next_log_pi)
@@ -257,8 +257,8 @@ class BRGEHHNet(nn.Module):
         critic_in = list(zip(obs, acs))
 
         # EHH
-        next_q_target, next_cw1, next_cw2, next_cw3 = self.critic(next_critic_in, mask, update=True)
-        td_value, cw1, cw2, cw3 = self.critic(critic_in, mask, update=update)
+        next_q_target, next_cw1, next_cw2, next_cw3 = self.critic(next_critic_in)
+        td_value, cw1, cw2, cw3 = self.critic(critic_in)
 
         td_delta = []
         adv_all = []
@@ -299,7 +299,7 @@ class BRGEHHNet(nn.Module):
             closs.append(MSELoss(q, td_target.detach()))
             
             acs_tmp = acs[a_i].type(torch.int64)
-            pred, w1, w2, w3 = self.actors[a_i](obs[a_i], update=update)
+            pred, w1, w2, w3 = self.actors[a_i](obs[a_i])
             probs_tmp = pred.gather(1, acs_tmp.unsqueeze(-1).squeeze(-1))
             probs.append(probs_tmp)
             ratio.append(probs[a_i]/(old_probs[a_i]+1e-5))
