@@ -44,8 +44,56 @@ Besides, for the method_name, we provide 5 kinds of multi-agent reinforcement le
 
 We evaluate our proposed method on two synthetic traffic networks and a real road network in Cologne, as shown in the following figures.
 
+<div style="text-align:center">
+  <img src="results/sythetic.png" width="500" height="250">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 1. Sythetic Traffic networks </center> 
+
+<div style="text-align:center">
+  <img src="results/cologne.png" width="500" height="300">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 2. The real road network </center> 
+
+Table 1 represents a comparison of the performance of BReLU-EHH with seven other algorithms, including three traditional algorithms and four RL methods.
 
 
-The following table represents a comparison of the performance of BReLU-EHH with seven other algorithms, including three traditional algorithms and four RL methods.
+<center style="font-size:14px;color:#C0C0C0">Table 1. Experimental performance of different traffic networks </center> 
 
-![Experimental performance of different traffic networks](/results/table.png)
+![](/results/table.png)
+
+- **Experimental results on the 5 $\times$ 5 traffic grid**
+
+<div style="text-align:center">
+  <img src="results/train_grid.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 3. Performance Comparison on the 5×5 Synthetic Traffic Grid throughout the entire training process. </center> 
+
+
+<div style="text-align:center">
+  <img src="results/test_grid.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 4. Performance of all methods on the 5×5 Synthetic Traffic Grid during the test process. </center> 
+
+- **Experimental results on the Non-Euclidean traffic network**
+
+<div style="text-align:center">
+  <img src="results/train_non.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 5. Performance Comparison on the Non-Euclidean Synthetic Traffic Network throughout the entire training process. </center> 
+
+<div style="text-align:center">
+  <img src="results/test_non.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 6. Performance Comparison on the Non-Euclidean Synthetic Traffic Network during the test process. </center> 
+
+- **Experimental results on the real road network**
+
+<div style="text-align:center">
+  <img src="results/train_cologne.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 7. Performance Comparison on the Real Road Network throughout the entire training process. </center> 
+
+<div style="text-align:center">
+  <img src="results/test_cologne.png">
+</div>
+<center style="font-size:14px;color:#C0C0C0">Figure 8. Performance Comparison on the Real Road Network during the test process. </center> 

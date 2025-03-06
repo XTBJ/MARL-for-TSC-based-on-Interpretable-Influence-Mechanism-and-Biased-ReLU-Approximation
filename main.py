@@ -229,7 +229,7 @@ def runner():
                     df.to_csv('results/' + env_name + '/DGN_' + str(ep) + '_' + ts + '.csv')
 
             # save the model
-            torch.save(model.state_dict(),"checkpoints/DGN.pt")
+            torch.save(model.state_dict(),"checkpoints/" + env_name + "/" + "DGN.pt")
 
     else:       
         if train:
@@ -322,7 +322,7 @@ def runner():
                         df.to_csv('results/' + env_name + "/" + method_name + '_' + str(ep) + '_' + ts + '.csv')
             
             # save the model
-            torch.save(agent.state_dict(), "checkpoints/" + method_name + ".pt")
+            torch.save(agent.state_dict(), "checkpoints/" + env_name + "/" + method_name + ".pt")
 
 if __name__ == '__main__':
     runner()
