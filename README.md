@@ -4,6 +4,18 @@ Traffic signal control is important in intelligent transportation systems, of wh
 
 Specifically, we first construct an actor-critic framework, for which the piecewise linear neural network(PWLNN), named biased ReLU (BReLU), is used as the function approximator to obtain a more accurate and theoretically grounded approximation. Then, to model the relationships among agents in multi-intersection scenarios, we introduce an interpretable influence mechanism based on efficient hinging hyperplanes neural network (EHHNN), which derives weights by analysis of variance (ANOVA) decomposition among agents and extracts spatiotemporal dependencies of the traffic features. Finally, our proposed framework is validated on two synthetic traffic networks and a real road network to coordinate signal control between intersections, achieving lower traffic delays across the entire traffic network compared with state-of-the-art (SOTA) performance.
 
+## Paper
+
+[https://arxiv.org/abs/2403.13639](https://arxiv.org/abs/2403.13639)
+
+## Citation
+
+    @article{luo4988310multi,
+    title={Multi-Agent Reinforcement Learning for Traffic Signal Control Based on Interpretable Influence Mechanism and Biased Relu Approximation},
+    author={Luo, Zhiyue and Xu, Jun and Chen, Fanglin},
+    journal={Available at SSRN 4988310}
+    }
+
 ## About the Project
 
 This work aims to develop an end-to-end solution for the multi-intersection traffic signal control problem, which can send phase commands to the traffic signal controllers to minimize the total vehicle waiting time of the global traffic network, and is divided in the following components:
@@ -64,36 +76,36 @@ Table 1 represents a comparison of the performance of BReLU-EHH with seven other
 - **Experimental results on the 5 $\times$ 5 traffic grid**
 
 <div style="text-align:center">
-  <img src="results/train_grid.png">
+  <img src="results/train_grid.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 3. Performance Comparison on the 5×5 Synthetic Traffic Grid throughout the entire training process. </center> 
 
 
 <div style="text-align:center">
-  <img src="results/test_grid.png">
+  <img src="results/test_grid.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 4. Performance of all methods on the 5×5 Synthetic Traffic Grid during the test process. </center> 
 
 - **Experimental results on the Non-Euclidean traffic network**
 
 <div style="text-align:center">
-  <img src="results/train_non.png">
+  <img src="results/train_non.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 5. Performance Comparison on the Non-Euclidean Synthetic Traffic Network throughout the entire training process. </center> 
 
 <div style="text-align:center">
-  <img src="results/test_non.png">
+  <img src="results/test_non.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 6. Performance Comparison on the Non-Euclidean Synthetic Traffic Network during the test process. </center> 
 
 - **Experimental results on the real road network**
 
 <div style="text-align:center">
-  <img src="results/train_cologne.png">
+  <img src="results/train_cologne.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 7. Performance Comparison on the Real Road Network throughout the entire training process. </center> 
 
 <div style="text-align:center">
-  <img src="results/test_cologne.png">
+  <img src="results/test_cologne.png" width="600" height="400">
 </div>
 <center style="font-size:14px;color:#C0C0C0">Figure 8. Performance Comparison on the Real Road Network during the test process. </center> 
